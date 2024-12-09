@@ -7,6 +7,9 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
+    "packagerOpts": {
+      "hostType": "lan"
+    },
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -16,6 +19,9 @@
       "supportsTablet": true
     },
     "android": {
+    "permissions": [
+      "CAMERA"
+    ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -23,6 +29,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "expo": {
+        "plugins": [
+          [
+            "expo-camera",
+            {
+              "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
+              "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
+              "recordAudioAndroid": true
+            }
+          ]
+        ]
     }
   }
 }

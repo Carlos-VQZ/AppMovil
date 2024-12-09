@@ -1,11 +1,25 @@
+import React, { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import * as ScreenOrientation from 'expo-screen-orientation';
+import AppNavigator from './navigation/AppNavigator';
 
 export default function App() {
+  useEffect(() => {
+    // Bloquear la orientación en modo landscape (horizontal)
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+
+    // Limpiar la orientación cuando el componente se desmonte (opcional)
+    return () => {
+      ScreenOrientation.unlockAsync(); // Permitir rotación cuando se desmonta
+    };
+  }, []);
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      {/* Ocultar la barra de estado */}
+      <StatusBar style="light" hidden={true} />
+      <AppNavigator /> 
     </View>
   );
 }
@@ -13,8 +27,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
